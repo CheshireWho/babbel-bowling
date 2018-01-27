@@ -12,12 +12,16 @@
 		const minRoll = 1;
 		const maxPinsPerFrame = 10;
 		const minPinsPerFrame = 0;
+		const finalScoreEl = document.getElementById('final-score');
 
 		let currentFrame = 1;
 		let currentRoll = 1;
 		let hitPinsInFrame = minPinsPerFrame;
 		let hitPinsPerRoll = minPinsPerFrame;
+		let score = 0;
 		let hitPinsVisual;
+		let rollCellEl;
+		let sumFrameEl;
 
 		function play() {
 			roll();
@@ -59,7 +63,10 @@
 			}
 
 			// update scoring table
-			document.getElementById(`frame-${currentFrame}-roll-${currentRoll}`).textContent = hitPinsVisual;
+			rollCellEl = document.getElementById(`frame-${currentFrame}-roll-${currentRoll}`);
+			if (rollCellEl) {
+				rollCellEl.textContent = hitPinsVisual;
+			}
 
 			if (isStrike) {
 				// no second roll after a strike
@@ -70,19 +77,38 @@
 		}
 
 		function handleFrameStatus() {
-			// check if all rolls for this frame are done
-			if (currentRoll > maxRolls) {
+			// if frame has more rolls left, do nothing
+			if (currentRoll <= maxRolls) {
+				return;
+			}
 
-				// move to next frame
-				currentFrame++;
-				currentRoll = minRoll;
-				hitPinsInFrame = minPinsPerFrame;
+			updateScore();
+
+			// move to next frame
+			currentFrame++;
+			currentRoll = minRoll;
+			hitPinsInFrame = minPinsPerFrame;
+		}
+
+		function updateScore() {
+			score += hitPinsInFrame;
+
+			sumFrameEl = document.getElementById(`sum-${currentFrame}`);
+			if (sumFrameEl) {
+				sumFrameEl.textContent = score;
 			}
 		}
 
 		function checkTerminationCondition() {
-			if (currentFrame > maxFrames) {
-				button.disabled = true;
+			if (currentFrame <= maxFrames) {
+				// game not done yet
+				return;
+			}
+
+			button.disabled = true;
+
+			if (finalScoreEl) {
+				finalScoreEl.textContent = score;
 			}
 		}
 
