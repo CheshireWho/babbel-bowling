@@ -12,7 +12,11 @@
 		const minRoll = 1;
 		const maxPinsPerFrame = 10;
 		const minPinsPerFrame = 0;
-		const finalScoreEl = document.getElementById('final-score');
+
+		// todo: attempt to implement special calculation and delay in filling sum fields for strikes/spares
+		// const extraRollsSumStrike = 2;
+		// const extraRollsSumSpare = 1;
+		// const points = {};
 
 		let currentFrame = 1;
 		let currentRoll = 1;
@@ -22,6 +26,16 @@
 		let hitPinsVisual;
 		let rollCellEl;
 		let sumFrameEl;
+
+		// todo: attempt to implement special calculation and delay in filling sum fields for strikes/spares
+		// function init() {
+		// 	// create object to store points of each role
+		// 	for (let i = currentFrame; i <= maxFrames; i++) {
+		// 		for (let j = currentRoll; j <= maxRolls; j++) {
+		// 			points[`frame${i}`][`roll${j}`] = undefined;
+		// 		}
+		// 	}
+		// }
 
 		function play() {
 			roll();
@@ -45,6 +59,10 @@
 		
 			hitPinsPerRoll = getRandomIntInclusive(minPinsPerFrame, maxPinsPerFrame - hitPinsInFrame);
 			hitPinsInFrame += hitPinsPerRoll;
+
+			// todo: attempt to implement special calculation and delay in filling sum fields for strikes/spares
+			// store points
+			// points[`frame${currentFrame}`][`frame${currentRoll}`] = hitPinsPerRoll;
 
 			// determine symbol to show in scoring table
 			switch (true) {
@@ -86,6 +104,17 @@
 		}
 
 		function updateScore() {
+			/*
+			 todo: attempt to implement special calculation and delay in filling sum fields for strikes/spares
+
+				Replace current function code with:
+				Instead of calculating the score only for the current frame and updating the table cell immediately,
+				use the `points` object to always loop over ALL frames and check if the score can be calculated
+				or has to wait for more rolls.
+				Only make a DOM change for empty table cells for performance reasons. Already filled cells will never 
+				change their store, hence there is no need to ever update them.
+			*/
+
 			score += hitPinsInFrame;
 
 			sumFrameEl = document.getElementById(`sum-${currentFrame}`);
@@ -102,17 +131,22 @@
 
 			button.disabled = true;
 
+			const finalScoreEl = document.getElementById('final-score');
 			if (finalScoreEl) {
 				finalScoreEl.textContent = score;
 			}
 		}
 
 		return {
+			// todo: attempt to implement special calculation and delay in filling sum fields for strikes/spares
+			// init: init,
 			play: play
 		};
 	};
 
 	const game = Game();
+	// todo: attempt to implement special calculation and delay in filling sum fields for strikes/spares
+	// game.init();
 
 	const button = document.getElementById('btn-play');
 	if (button) {
