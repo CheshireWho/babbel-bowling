@@ -39,24 +39,20 @@
 		}
 
 		function roll() {
-			let isStrike = false;
-
+			const symbolStrike = 'X';
+			const symbolSpare = '/';
+			const symbolMiss = '-';
+		
 			hitPinsPerRoll = getRandomIntInclusive(minPinsPerFrame, maxPinsPerFrame - hitPinsInFrame);
 			hitPinsInFrame += hitPinsPerRoll;
 
 			// determine symbol to show in scoring table
 			switch (true) {
 				case hitPinsPerRoll === minPinsPerFrame:
-					hitPinsVisual = '-';
+					hitPinsVisual = symbolMiss;
 					break;
 				case hitPinsInFrame === maxPinsPerFrame:
-					if (currentRoll === minRoll) {
-						hitPinsVisual = 'X';
-						isStrike = true;
-					} else {
-						hitPinsVisual = '/';
-					}
-					
+					hitPinsVisual = currentRoll === minRoll ? symbolStrike : symbolSpare;
 					break;
 				default:
 					hitPinsVisual = hitPinsPerRoll;
@@ -68,10 +64,9 @@
 				rollCellEl.textContent = hitPinsVisual;
 			}
 
-			if (isStrike) {
+			if (hitPinsVisual === symbolStrike) {
 				// no second roll after a strike
 				currentRoll++;
-				isStrike = false;
 			}
 			currentRoll++;
 		}
