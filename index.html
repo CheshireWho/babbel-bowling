@@ -2,8 +2,77 @@
 <html>
 	<head>
 		<title>Babbel bowling</title>
+
+		<style>
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+			td {
+				border: 1px solid grey;
+				min-width: 20px;
+				height: 1rem;
+				text-align: center;
+			}
+
+			button {
+				margin-top: 20px;
+				font-size: 1.3rem;
+				cursor: pointer;
+			}
+		</style>
 	</head>
 	<body>
-		
+		<table>
+			<tr>
+				<td colspan="2">1</td>
+				<td colspan="2">2</td>
+				<td colspan="2">3</td>
+				<td colspan="2">4</td>
+				<td colspan="2">5</td>
+				<td colspan="2">6</td>
+				<td colspan="2">7</td>
+				<td colspan="2">8</td>
+				<td colspan="2">9</td>
+				<td colspan="2">10</td>
+			</tr>
+			<tr>
+				<td id="frame-1-roll-1"></td>
+				<td id="frame-1-roll-2"></td>
+				<td id="frame-2-roll-1"></td>
+				<td id="frame-2-roll-2"></td>
+				<td id="frame-3-roll-1"></td>
+				<td id="frame-3-roll-2"></td>
+				<td id="frame-4-roll-1"></td>
+				<td id="frame-4-roll-2"></td>
+				<td id="frame-5-roll-1"></td>
+				<td id="frame-5-roll-2"></td>
+				<td id="frame-6-roll-1"></td>
+				<td id="frame-6-roll-2"></td>
+				<td id="frame-7-roll-1"></td>
+				<td id="frame-7-roll-2"></td>
+				<td id="frame-8-roll-1"></td>
+				<td id="frame-8-roll-2"></td>
+				<td id="frame-9-roll-1"></td>
+				<td id="frame-9-roll-2"></td>
+				<td id="frame-10-roll-1"></td>
+				<td id="frame-10-roll-2"></td>
+			</tr>
+			<tr>
+				<td colspan="2" id="sum-1"></td>
+				<td colspan="2" id="sum-2"></td>
+				<td colspan="2" id="sum-3"></td>
+				<td colspan="2" id="sum-4"></td>
+				<td colspan="2" id="sum-5"></td>
+				<td colspan="2" id="sum-6"></td>
+				<td colspan="2" id="sum-7"></td>
+				<td colspan="2" id="sum-8"></td>
+				<td colspan="2" id="sum-9"></td>
+				<td colspan="2" id="sum-10"></td>
+			</tr>
+		</table>
+
+		<button id="btn-play">Play</button>
 	</body>
 </html>
