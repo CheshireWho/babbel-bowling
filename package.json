@@ -1,0 +1,12 @@
+{
+  "name": "babbel-bowling",
+  "version": "1.0.0",
+  "description": "Scoring system for a bowling game for Babbel's take home test",
+  "author": "Birgit Brodbeck",
+  "scripts": {
+    "app": "./node_modules/http-server/bin/http-server -o"
+  },
+  "dependencies": {
+    "http-server": "0.11.1"
+  }
+}
